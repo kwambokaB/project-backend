@@ -1,0 +1,19 @@
+{
+  "name": "project-backend",
+  "version": "1.0.0",
+  "description": "\"\"\u001b[DThis is the backend app of an application that helps bring patients and therapists come together\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwambokaB/project-backend.git"
+  },
+  "author": "kwambokaB",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kwambokaB/project-backend/issues"
+  },
+  "homepage": "https://github.com/kwambokaB/project-backend#readme"
+}
