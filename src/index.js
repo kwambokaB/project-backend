@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 
 //connect db
@@ -15,8 +16,15 @@ mongoose.connect
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
+// setup routes
+app.get('/', (req, res) => res.status(200).json({
+    status: 'success',
+    data: { message: 'Welcome to this awesome API!' }
+  }));
+
 
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`);
   });
+
+  export default app;
