@@ -1,9 +1,16 @@
 import express from 'express';
 
-const route = express.Router;
+import Auth from '../middlewares/auth';
+import userController from '../controllers/userController';
+import userValidator from '../middlewares/userValidation';
 
-route.get('/', validation, authentication, userContorller.getUsers);
+const route = express.Router();
 
-route.post('/login', validation, authentication, userController.login);
+const { checkToken, isAdmin } = Auth;
+const { signin, createUser } = userController;
+const { signinCheck, signupCheck } = userValidator;
 
-route.post('/signup', validation, authentication, userContorller.signUp);
+route.post('/signin', signinCheck, signin);
+route.post('/create-user', checkToken, isAdmin, signupCheck, createUser);
+
+export default route;
