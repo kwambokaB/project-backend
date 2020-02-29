@@ -1,48 +1,44 @@
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-    firstName:{
-        required: true,
-        type: String,
-        min: 3,
-        max:255
+  firstName: {
+    required: true,
+    type: String,
+    min: 3,
+    max: 255
 
-    },
-    lastName : {
-        required: true,
-        type: String,
-        min: 3,
-        max:255
+  },
+  lastName: {
+    required: true,
+    type: String,
+    min: 3,
+    max: 255
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    min: 6,
+    max: 255
 
-    },
-    email:{
-        type: String,
-        required: true,
-        unique: true,
-        min: 6,
-        max: 255
+  },
+  password: {
+    type: String,
+    required: true,
+    min: 8,
+    max: 1000
+  },
 
-    },
-    password:{
-        type: String,
-        required: true,
-        min: 8,
-        max: 1000
-    },
-    IsAdmin :{
-        type: Boolean,
-        default: false
-    },
-    userRole: {
-      type: String,
-      default : patient
-    
-    },
-    timestamp :{
+  logCount: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  timestamp: {
        
-            type: Date,
-            default: Date.now 
-    }
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('User', userSchema);

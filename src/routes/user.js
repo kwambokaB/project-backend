@@ -1,16 +1,43 @@
+/* eslint-disable no-unused-vars */
 import express from 'express';
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import User from '../models/user';
+import { signinCheck, signupCheck } from '../middlewares/userValidation';
+ 
+dotenv.config();
+const router = express.Router();
 
-import Auth from '../middlewares/auth';
-import userController from '../controllers/userController';
-import userValidator from '../middlewares/userValidation';
+router.post('/signup', signupCheck, async (req, res) => {
+  const salt = await bcryptjs.genSalt(10);
+  const hashedPassword = await bcryptjs.hash(req.body.password, salt);
 
-const route = express.Router();
+  const user = new User({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    userName: req.body.userName,
+    email: req.body.email,
+    password: hashedPassword,
+    logCount: req.body.logCount
+  });
+  try {
+    const savedUser = await user.save();
+    res.send(savedUser);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
-const { checkToken, isAdmin } = Auth;
-const { signin, createUser } = userController;
-const { signinCheck, signupCheck } = userValidator;
+router.post('/signin', signinCheck, (req, res) => {
+  const validPass = bcryptjs.compare(req.body.password, user.password);
+  if (!validPass) {
+    res.status(400).send('invalid email');
+  }
 
-route.post('/signin', signinCheck, signin);
-route.post('/create-user', checkToken, isAdmin, signupCheck, createUser);
+  // eslint-disable-next-line no-underscore-dangle
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_PRIVATE_KEY);
+  res.header('auth-token', token).send(token);
+});
 
-export default route;
+module.exports = router;
