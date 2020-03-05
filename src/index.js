@@ -11,7 +11,7 @@ const port = process.env.PORT || 8080;
 
 // connect db
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true },
-  () => console.log('connected to db'));
+  () => console.log('connecting to the database..............'));
 
 // setup express body-perser for json data
 app.use(express.urlencoded({ extended: false }));
