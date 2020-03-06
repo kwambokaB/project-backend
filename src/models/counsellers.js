@@ -33,11 +33,13 @@ const counsellerSchema = new mongoose.Schema({
     type: String,
     default: 'general'
   },
-  
+  imageUrl: {
+    type: String
+  },
   timestamp: {
     type: Date,
     default: Date.now()
   }
 });
 
-module.exports = mongoose.model('Counseller', counsellerSchema);
+module.exports = mongoose.model('Counsellor', counsellerSchema);

@@ -26,7 +26,7 @@ app.use('/api/v1/auth', userRoute);
 app.use('/api/v1/counsellor', counsellorRoute);
 app.use('/api/v1/profile', profileRoute);
 
-
+// start server
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
