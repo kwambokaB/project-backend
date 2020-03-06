@@ -23,7 +23,6 @@ app.get('/api/v1', (req, res) => res.status(200).json({
   status: 'success',
   data: { message: 'Welcome to this awesome API!' }
 }));
-
 app.use('api/v1/user', userRoute);
 app.use('api/v1/counsellor', counsellorRoute);
 app.use('api/v1/profile', profileRoute);
