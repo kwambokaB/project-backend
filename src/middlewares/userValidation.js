@@ -12,8 +12,6 @@ const signupCheck = async (req, res, next) => {
     password: Joi.string()
       .min(6)
       .required(),
-    logCount: Joi.number()
-      .required(),
   });
 
   const { error } = schema.validate(req.body);

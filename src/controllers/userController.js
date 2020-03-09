@@ -13,10 +13,8 @@ exports.signUp = async (req, res) => {
   const user = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    userName: req.body.userName,
     email: req.body.email,
     password: hashedPassword,
-    logCount: req.body.logCount
   });
   try {
     const savedUser = await user.save();

@@ -7,7 +7,6 @@ import { userRoute, therapistRoute, adminRoute } from './routes/index';
 const app = express();
 const port = process.env.PORT || 8080;
 
-
 // connect db
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true },
   () => console.log('connecting to the database..............'));
@@ -22,10 +21,10 @@ app.get('/api/v1', (req, res) => res.status(200).json({
   data: { message: 'Welcome to this awesome API!' }
 }));
 
-app.use('/api/v1/auth', userRoute);
+app.use('/api/v1/user/auth', userRoute);
 app.use('/api/v1/therapist', therapistRoute);
 // app.use('/api/v1/profile', profileRoute);
-app.use('api/v1/admin', adminRoute);
+app.use('/api/v1/admin', adminRoute);
 
 
 // start server

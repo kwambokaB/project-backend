@@ -31,7 +31,6 @@ const userSchema = new mongoose.Schema({
 
   logCount: {
     type: Number,
-    required: true,
     default: 0
   },
   timestamp: {
