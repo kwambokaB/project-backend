@@ -27,7 +27,7 @@ exports.signUp = async (req, res) => {
 };
 
 
-exports.singIn = (req, res) => {
+exports.signIn = (req, res) => {
   const validPass = bcryptjs.compare(req.body.password, user.password);
   if (!validPass) {
     res.status(400).send('invalid email');
