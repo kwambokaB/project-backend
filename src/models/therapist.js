@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const counsellerSchema = new mongoose.Schema({
+const therapistSchema = new mongoose.Schema({
     
   firstName: {
     type: String,
@@ -42,4 +42,4 @@ const counsellerSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Counsellor', counsellerSchema);
+module.exports = mongoose.model('Therapist', therapistSchema);

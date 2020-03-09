@@ -1,5 +1,5 @@
 import userRoute from './user';
-import counsellorRoute from './counsellors';
+import therapistRoute from './therapist';
 import profileRoute from './profile';
 
-export { userRoute, counsellorRoute, profileRoute };
+export { userRoute, therapistRoute, profileRoute };
