@@ -3,14 +3,14 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import Admin from '../models/admin';
 import User from '../models/user';
-import Counsellor from '../models/counsellers';
+import Therapist from '../models/therapist';
 
 dotenv.config();
 
 exports.getAllTherapists = (req, res) => {
-  Counsellor.find().then(
-    (counsellors) => {
-      res.status(200).json(counsellors);
+  Therapist.find().then(
+    (therapist) => {
+      res.status(200).json(therapist);
     }
   ).catch(
     (error) => {
@@ -35,13 +35,13 @@ exports.getAllUsers = (req, res) => {
   );
 };
 
-exports.deleteUser = (req, res) => {
+// exports.deleteUser = (req, res) => {
 
-};
+// };
 
-exports.deleteTherapist = (req, res) => {
+// exports.deleteTherapist = (req, res) => {
 
-};
+// };
 
 exports.signIn = (req, res) => {
   const validPass = bcryptjs.compare(req.body.password, Admin.password);
@@ -58,7 +58,7 @@ exports.addTherapist = async (req, res) => {
   const salt = await bcryptjs.genSalt(10);
   const hashedPassword = await bcryptjs.hash(req.body.password, salt);
 
-  const counsellor = new Counsellor({
+  const therapist = new Therapist({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -68,8 +68,8 @@ exports.addTherapist = async (req, res) => {
     imageUrl: req.body.imageUrl,
   });
   try {
-    const savedCounsellor = await counsellor.save();
-    res.send(savedCounsellor);
+    const savedTherapist = await therapist.save();
+    res.send(savedTherapist);
   } catch (err) {
     res.status(400).send(err);
   }

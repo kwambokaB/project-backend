@@ -2,7 +2,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
-import { userRoute, therapistRoute } from './routes/index';
+import { userRoute, therapistRoute, adminRoute } from './routes/index';
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -12,7 +12,7 @@ const port = process.env.PORT || 8080;
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true },
   () => console.log('connecting to the database..............'));
 
-// setup express body-perser for json data
+// setup express body-parser for json data
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -25,6 +25,8 @@ app.get('/api/v1', (req, res) => res.status(200).json({
 app.use('/api/v1/auth', userRoute);
 app.use('/api/v1/therapist', therapistRoute);
 // app.use('/api/v1/profile', profileRoute);
+app.use('api/v1/admin', adminRoute);
+
 
 // start server
 app.listen(port, () => {
